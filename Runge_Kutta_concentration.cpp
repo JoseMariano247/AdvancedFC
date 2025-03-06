@@ -59,7 +59,7 @@ int main()
 
     // Integration settings
     double dt    = 0.01; // time step
-    double tMax  = 30.0;  // end time
+    double tMax  = 50.0;  // end time
 
     // Main integration loop
     while (t < tMax) {

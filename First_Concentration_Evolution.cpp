@@ -18,7 +18,7 @@ int main() {
     double k_A = 0.1;           // Reaction rate constant for A -> B
     double k_B = 0.01;          // Reaction rate constant for B -> A
     double t_stop = 50.0;     // End time for simulation
-    double stop = k_A/(k_A + k_B);
+    double stop; 
 
     // Initialise simulation state
     double t = 0.0;
@@ -48,6 +48,7 @@ int main() {
         double b = k_B * B;
         if (a <= 0) break;
         if (b <= 0) break;
+        stop = A * k_A/(A * k_A + B * k_B);
 
         // Draw a uniform random number r in (0,1) to determine the time increment
         double r = dis(gen);
@@ -56,7 +57,6 @@ int main() {
         t += T;
         if (t > t_stop) break;
 
-        // Update state: decay reaction reduces molecule count by 1 (A -> ∅)
         if (check < stop) {
             A--;
             B++;
