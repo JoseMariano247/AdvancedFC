@@ -3,7 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Read the data from output.txt
-# Assuming the file is tab-delimited with a header like "Time    Concentration"
 data = pd.read_csv('Concentrations.txt', delimiter='\t')
 data_1 = pd.read_csv("Concentrations_Runge.txt", delimiter='\t')
 
