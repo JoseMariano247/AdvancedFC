@@ -5,7 +5,7 @@
 #include <cmath>
 #include <fstream>
 
-void solveMonteCarlo(int initial_A, int initial_B, double k_A, double k_B, 
+void MonteCarlo(int initial_A, int initial_B, double k_A, double k_B, 
                      double t_stop, const std::string& outputFilename)
 {
     double t = 0.0;
