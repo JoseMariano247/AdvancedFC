@@ -7,6 +7,7 @@ data = pd.read_csv('Concentrations.txt', delimiter='\t')
 data_1 = pd.read_csv("Concentrations_Runge.txt", delimiter='\t')
 data_2 = pd.read_csv("Concentrations_Runge_Ch.txt", delimiter='\t')
 data_3 = pd.read_csv("Concentrations_Monte_Carlo_Ch.txt", delimiter='\t')
+data_4 = pd.read_csv("Concentrations_Runge_Ph.txt", delimiter='\t')
 
 # Extract x and y values from the DataFrame
 time = data.iloc[:, 0]  # first column: Time
@@ -35,6 +36,12 @@ Sv_1 = data_3.iloc[:, 2]
 As_1 = data_3.iloc[:, 3]
 A2_1 = data_3.iloc[:, 4]
 
+# Extract x and y values from the DataFrame
+time_4 = data_4.iloc[:, 0]  # first column: Time
+A_4 = data_4.iloc[:, 1]  # second column: Concentration A
+Fv = data_4.iloc[:, 2]
+Af = data_4.iloc[:, 3]
+
 # Create the plot
 plt.figure(figsize=(8, 6))
 plt.plot(time, A, linestyle='-', color='b', label='Concentration of A')
@@ -59,6 +66,20 @@ plt.plot(time_3, A_3, linestyle='--', color='b', label='Concentration of A of MC
 plt.plot(time_3, Sv_1, linestyle='--', color='r', label='Concentration of Sv of MC')
 plt.plot(time_3, As_1, linestyle='--', color='orange', label='Concentration of As of MC')
 plt.plot(time_3, A2_1, linestyle='--', color='green', label='Concentration of A2 of MC')
+
+plt.xlabel('Time')
+plt.ylabel('Concentration')
+plt.title('Concentration vs Time')
+plt.legend()
+plt.grid(True)
+plt.show()
+
+# Create the plot
+plt.figure(figsize=(8, 6))
+plt.plot(time_4, A_4, linestyle='-', color='b', label='Concentration of A')
+plt.plot(time_4, Fv, linestyle='-', color='r', label='Concentration of Fv')
+plt.plot(time_4, Af, linestyle='-', color='orange', label='Concentration of Af')
+
 
 plt.xlabel('Time')
 plt.ylabel('Concentration')
