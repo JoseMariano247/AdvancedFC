@@ -21,7 +21,7 @@ static void rk4Step2(double& k1, double& k2, double& A, double& Sv, double& As,
     derivatives2(k1, k2, A, Sv, As, A2, dA1, dSv1, dAs1, dA21);
     // k2
     derivatives2(k1, k2, A + 0.5 * dt * dA1, Sv + 0.5 * dt * dSv1, As + 0.5 * dt * dAs1, 
-        A2 + 0.5 * dt * dA21, dA2, dSv2, dAs2, dA21);
+        A2 + 0.5 * dt * dA21, dA2, dSv2, dAs2, dA22);
     // k3
     derivatives2(k1, k2, A + 0.5 * dt * dA2, Sv + 0.5 * dt * dSv2, As + 0.5 * dt * dAs2, 
         A2 + 0.5 * dt * dA22, dA3, dSv3, dAs3, dA23);

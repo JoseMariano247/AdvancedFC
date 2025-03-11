@@ -57,6 +57,7 @@ else
 A--;
 As--;
 A2++;
+Sv++;
 }
 
 times.push_back(t);
