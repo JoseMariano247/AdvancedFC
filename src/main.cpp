@@ -3,6 +3,7 @@
 #include "Chemiosorption.h"
 #include "Chemiosorption_MC.h"
 #include "Physisorption_simple_RK.h"
+#include "Physisorption_simple_MC.h"
 
 int main()
 {
@@ -31,7 +32,7 @@ int main()
     RungeKuttaCh(initial_A_2, initial_Sv, initial_As, initial_A2, 
         k_1, k_2, dt_2, t_stop_2, "Concentrations_Runge_Ch.txt"); //Runge-Kutta 4 Solver
     
-    MonteCarloCh(initial_A_2, initial_Sv, initial_As, initial_A2, k_1, k_2, t_stop, "Concentrations_Monte_Carlo_Ch.txt"); //Monte Carlo Solver
+    MonteCarloCh(initial_A_2, initial_Sv, initial_As, initial_A2, k_1, k_2, t_stop_2, "Concentrations_Monte_Carlo_Ch.txt"); //Monte Carlo Solver
 
 
     //Simulation Parameters Physisorption
@@ -47,6 +48,8 @@ int main()
         k__1, k__2,
         dt_3, t_stop_3,
         "Concentrations_Runge_Ph.txt");
+
+    MonteCarloPh(initial_A_3, initial_Fv, initial_Af, k__1, k__2, t_stop_3, "Concentrations_MC_Ph.txt");
 
     return 0;
 }
