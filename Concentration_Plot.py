@@ -9,6 +9,8 @@ data_2 = pd.read_csv("Concentrations_Runge_Ch.txt", delimiter='\t')
 data_3 = pd.read_csv("Concentrations_Monte_Carlo_Ch.txt", delimiter='\t')
 data_4 = pd.read_csv("Concentrations_Runge_Ph.txt", delimiter='\t')
 data_5 = pd.read_csv("Concentrations_MC_Ph.txt", delimiter='\t')
+data_6 = pd.read_csv("Recombination_RK.txt", delimiter='\t')
+data_7 = pd.read_csv("Recombination_MC.txt", delimiter='\t')
 
 # Extract x and y values from the DataFrame
 time = data.iloc[:, 0]  # first column: Time
@@ -48,6 +50,22 @@ time_5 = data_5.iloc[:, 0]  # first column: Time
 A_5 = data_5.iloc[:, 1]  # second column: Concentration A
 Fv_1 = data_5.iloc[:, 2]
 Af_1 = data_5.iloc[:, 3]
+
+time_6 = data_6.iloc[:, 0]
+A_r    = data_6.iloc[:, 1]
+Fv_r   = data_6.iloc[:, 2]
+Af_r   = data_6.iloc[:, 3]       
+Sv_r   = data_6.iloc[:, 4]   
+As_r   = data_6.iloc[:, 5]      
+A2_r   = data_6.iloc[:, 6]
+
+time_7 = data_7.iloc[:, 0]
+A_r_1    = data_7.iloc[:, 1]
+Fv_r_1   = data_7.iloc[:, 2]
+Af_r_1   = data_7.iloc[:, 3]       
+Sv_r_1   = data_7.iloc[:, 4]   
+As_r_1   = data_7.iloc[:, 5]      
+A2_r_1   = data_7.iloc[:, 6]
 
 # Create the plot
 plt.figure(figsize=(8, 6))
@@ -98,3 +116,23 @@ plt.grid(True)
 plt.show()
 
 
+plt.figure(figsize=(8, 6))
+plt.plot(time_6, A_r, linestyle='-', color='b', label='Concentration of A')
+plt.plot(time_6, Fv_r, linestyle='-', color='r', label='Concentration of Fv')
+plt.plot(time_6, Af_r, linestyle='-', color='orange', label='Concentration of Af')
+plt.plot(time_6, Sv_r, linestyle='-', color='yellow', label='Concentration of Sv')
+plt.plot(time_6, As_r, linestyle='-', color='black', label='Concentration of As')
+plt.plot(time_6, A2_r, linestyle='-', color='pink', label='Concentration of A2')
+plt.plot(time_7, A_r_1, linestyle='--', color='pink', label='Concentration of A of MC')
+plt.plot(time_7, Fv_r_1, linestyle='--', color='b', label='Concentration of Fv of MC')
+plt.plot(time_7, Af_r_1, linestyle='--', color='yellow', label='Concentration of Af of MC')
+plt.plot(time_7, Sv_r_1, linestyle='--', color='black', label='Concentration of Sv of MC')
+plt.plot(time_7, As_r_1, linestyle='--', color='orange', label='Concentration of As of MC')
+plt.plot(time_7, A2_r_1, linestyle='--', color='r', label='Concentration of A2 of MC')
+
+plt.xlabel('Time')
+plt.ylabel('Concentration')
+plt.title('Concentration vs Time')
+plt.legend()
+plt.grid(True)
+plt.show()

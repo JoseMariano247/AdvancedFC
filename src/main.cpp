@@ -4,6 +4,8 @@
 #include "Chemiosorption_MC.h"
 #include "Physisorption_simple_RK.h"
 #include "Physisorption_simple_MC.h"
+#include "Recombination_RK.h"
+#include "Recombination_MC.h"
 
 int main()
 {
@@ -50,6 +52,41 @@ int main()
         "Concentrations_Runge_Ph.txt");
 
     MonteCarloPh(initial_A_3, initial_Fv, initial_Af, k__1, k__2, t_stop_3, "Concentrations_MC_Ph.txt");
+
+    //Simulation Parameters Recombination
+
+    double initial_A_r   = 10000;    
+    double initial_Fv_r  = 10000;    
+    double initial_Af_r  = 0;       
+    double initial_Sv_r  = 200;    
+    double initial_As_r  = 0;       
+    double initial_A2_r  = 0;       
+
+    double r1 = 0.0001;   
+    double r2 = 0.00001;  
+    double r3 = 0.0001;   
+    double r4 = 0.00001;  
+    double r5 = 0.001;    
+    double r6 = 0.0001;   
+    double r7 = 0.0001;   
+
+    double t_stop_r = 50.0;
+    double dt_r     = 0.01;
+
+
+    RungeKuttaRecombination(initial_A_r, initial_Fv_r, initial_Af_r,
+        initial_Sv_r, initial_As_r, initial_A2_r,
+        r1, r2, r3,
+        r4, r5, r6,
+        r7, dt_r, t_stop_r,
+        "Recombination_RK.txt");
+
+    MonteCarloRecombination(initial_A_r, initial_Fv_r, initial_Af_r,
+        initial_Sv_r, initial_As_r, initial_A2_r,
+        r1, r2, r3,
+        r4, r5, r6,
+        r7, t_stop_r,
+        "Recombination_MC.txt");
 
     return 0;
 }
