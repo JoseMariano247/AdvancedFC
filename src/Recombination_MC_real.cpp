@@ -1,32 +1,59 @@
-
-#include "Recombination_MC.h"
+#include "Recombination_MC_real.h"
 #include <iostream>
 #include <vector>
 #include <random>
 #include <cmath>
 #include <fstream>
 
-void MonteCarloRecombination(int initial_A, int initial_Fv, int initial_Af,
-                                       int initial_Sv, int initial_As, int initial_A2,
-                                       double r1, double r2, double r3, double r4,
-                                       double r5, double r6, double r7,
-                                       double t_stop, const std::string& outputFilename)
+#ifndef pi
+#define pi 3.14159265358979323846
+#endif
+
+
+//using namespace std;
+
+void MonteCarloRecombinationReal(double initial_A, double initial_Fv,
+    double initial_Sv, double initial_A2, double M, double Tg, double Tw,
+    double k1, double k3, double k4, double vd,
+    double vD, double Ed, double ED, double Er, double ELHF,
+    double t_stop, const std::string& outputFilename)
 {
+
+    double kb = 1.380649e-23;
+    double Na = 6.023e23;
+
+    double v_med = std::sqrt((8*kb*Tg)/(pi * M));
+
+    double phi_O = 0.25 * v_med * initial_A;
+    double Pr = k4 * std::exp(-Er/(Na*kb*Tw));
+    double Prlh = k4 * std::exp(-ELHF/(Na*kb*Tw));
+    double tau_d_1 = vD * std::exp(-ED/(Na*kb*Tw));
+
+    //calculate reaction coefficents
+
+    double r1 = k1 * phi_O;
+    double r2 = vd * std::exp(-Ed/(Na*kb*Tw));
+    double r3 = k3 * phi_O;
+    double r4 = Pr * r3;
+    double r5 = tau_d_1;
+    double r6 = tau_d_1 * Pr;
+    double r7 = tau_d_1 * Prlh;
+
     double t = 0.0;
-    int A = initial_A;
-    int Fv = initial_Fv;
-    int Af = initial_Af;
-    int Sv = initial_Sv;
-    int As = initial_As;
-    int A2 = initial_A2;
+    double A = initial_A;
+    double Fv = initial_Fv;
+    double Af = 0.0;
+    double Sv = initial_Sv;
+    double As = 0.0;
+    double A2 = initial_A2;
 
     std::vector<double> times{ t };
-    std::vector<int> populations_A{ A };
-    std::vector<int> populations_Fv{ Fv };
-    std::vector<int> populations_Af{ Af };
-    std::vector<int> populations_Sv{ Sv };
-    std::vector<int> populations_As{ As };
-    std::vector<int> populations_A2{ A2 };
+    std::vector<double> populations_A{ A };
+    std::vector<double> populations_Fv{ Fv };
+    std::vector<double> populations_Af{ Af };
+    std::vector<double> populations_Sv{ Sv };
+    std::vector<double> populations_As{ As };
+    std::vector<double> populations_A2{ A2 };
 
     std::random_device rd;
     std::mt19937 gen(rd());

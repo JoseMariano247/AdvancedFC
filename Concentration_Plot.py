@@ -10,7 +10,7 @@ data_3 = pd.read_csv("Concentrations_Monte_Carlo_Ch.txt", delimiter='\t')
 data_4 = pd.read_csv("Concentrations_Runge_Ph.txt", delimiter='\t')
 data_5 = pd.read_csv("Concentrations_MC_Ph.txt", delimiter='\t')
 data_6 = pd.read_csv("Recombination_RK.txt", delimiter='\t')
-data_7 = pd.read_csv("Recombination_MC.txt", delimiter='\t')
+data_7 = pd.read_csv("Real_Test.txt", delimiter='\t')
 
 # Extract x and y values from the DataFrame
 time = data.iloc[:, 0]  # first column: Time
@@ -117,12 +117,12 @@ plt.show()
 
 
 plt.figure(figsize=(8, 6))
-plt.plot(time_6, A_r, linestyle='-', color='b', label='Concentration of A')
-plt.plot(time_6, Fv_r, linestyle='-', color='r', label='Concentration of Fv')
-plt.plot(time_6, Af_r, linestyle='-', color='orange', label='Concentration of Af')
-plt.plot(time_6, Sv_r, linestyle='-', color='yellow', label='Concentration of Sv')
-plt.plot(time_6, As_r, linestyle='-', color='black', label='Concentration of As')
-plt.plot(time_6, A2_r, linestyle='-', color='pink', label='Concentration of A2')
+#plt.plot(time_6, A_r, linestyle='-', color='b', label='Concentration of A')
+#plt.plot(time_6, Fv_r, linestyle='-', color='r', label='Concentration of Fv')
+#plt.plot(time_6, Af_r, linestyle='-', color='orange', label='Concentration of Af')
+#plt.plot(time_6, Sv_r, linestyle='-', color='yellow', label='Concentration of Sv')
+#plt.plot(time_6, As_r, linestyle='-', color='black', label='Concentration of As')
+#plt.plot(time_6, A2_r, linestyle='-', color='pink', label='Concentration of A2')
 plt.plot(time_7, A_r_1, linestyle='--', color='pink', label='Concentration of A of MC')
 plt.plot(time_7, Fv_r_1, linestyle='--', color='b', label='Concentration of Fv of MC')
 plt.plot(time_7, Af_r_1, linestyle='--', color='yellow', label='Concentration of Af of MC')
@@ -132,6 +132,8 @@ plt.plot(time_7, A2_r_1, linestyle='--', color='r', label='Concentration of A2 o
 
 plt.xlabel('Time')
 plt.ylabel('Concentration')
+plt.xscale('log')
+#plt.yscale('log')
 plt.title('Concentration vs Time')
 plt.legend()
 plt.grid(True)
