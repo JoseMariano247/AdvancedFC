@@ -7,10 +7,10 @@
 #include "Recombination_RK.h"
 #include "Recombination_MC.h"
 #include "Recombination_MC_real.h"
+#include "Recombination_RK_real.h"
 
 int main()
 {
-    /*
     //Simulation Parameters simple case
     int initial_A = 10000;
     int initial_B = 10;
@@ -89,31 +89,36 @@ int main()
         r4, r5, r6,
         r7, t_stop_r,
         "Recombination_MC.txt");
-    */
-
+    
     double O         = 1e5;
     double Fv        = 1.5e5;
     double Sv        = 3e3;
     double A2        = 0.0;
-    double M         = 2.66e-26;
+    double M         = 16e-3;
     double Tg        = 500;
     double Tw        = 200;
     double k1        = 1;
     double k3        = 1;
     double k4        = 1;
-    double vd        = 1e5;
-    double vD        = 1e3;
-    double Ed        = 30;
-    double ED        = 15;
-    double Er        = 17.5;
-    double ELHF      = 17.5;
-    double t_stop    = 3000;
+    double vd        = 1e10;
+    double vD        = 1e8;
+    double Ed        = 30e3;
+    double ED        = 15e3;
+    double Er        = 17.5e3;
+    double ELHF      = 17.5e3;
+    double tstop    = 100;
 
     MonteCarloRecombinationReal(O, Fv,
         Sv, A2, M, Tg, Tw,
         k1, k3, k4, vd,
         vD, Ed, ED, Er, ELHF,
         t_stop, "Real_Test.txt");
+
+    RungeKuttaRecombinationreal(O, Fv,
+        Sv, A2, M, Tg, Tw,
+        k1, k3, k4, vd,
+        vD, Ed, ED, Er, ELHF,
+        tstop, "Real_Test_MC.txt");
 
     return 0;
 }
