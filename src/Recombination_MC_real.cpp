@@ -17,12 +17,13 @@ void MonteCarloRecombinationReal(double initial_A, double initial_Fv,
     double k1, double k3, double k4, double vd,
     double vD, double Ed, double ED, double Er, double ELHF,
     double t_stop, const std::string& outputFilename)
+    
 {
 
     double kb = 1.380649e-23;
     double Na = 6.023e23;
 
-    double v_med = std::sqrt((8*kb*Tg)/(pi * M));
+    double v_med = std::sqrt((8*kb*Tg*Na)/(pi * M));
 
     double phi_O = 0.25 * v_med * initial_A;
     double Pr = k4 * std::exp(-Er/(Na*kb*Tw));
@@ -35,7 +36,7 @@ void MonteCarloRecombinationReal(double initial_A, double initial_Fv,
     double r2 = vd * std::exp(-Ed/(Na*kb*Tw));
     double r3 = k3 * phi_O;
     double r4 = Pr * r3;
-    double r5 = tau_d_1;
+    double r5 = 0.75*tau_d_1;
     double r6 = tau_d_1 * Pr;
     double r7 = tau_d_1 * Prlh;
 
@@ -109,16 +110,20 @@ void MonteCarloRecombinationReal(double initial_A, double initial_Fv,
         switch (reaction)
         {
             case 1: // A + Fv -> Af
-                if (A > 0 && Fv > 0) { A--; Fv--; Af++; }
+                //if (A > 0 && Fv > 0) { A--; Fv--; Af++; }
+                if (A > 0 && Fv > 0) {Fv--; Af++; }
                 break;
             case 2: // Af -> A + Fv
-                if (Af > 0) { Af--; A++; Fv++; }
+                //if (Af > 0) { Af--; A++; Fv++; }
+                if (Af > 0) { Af--; Fv++; }
                 break;
             case 3: // A + Sv -> As
-                if (A > 0 && Sv > 0) { A--; Sv--; As++; }
+                //if (A > 0 && Sv > 0) { A--; Sv--; As++; }
+                if (A > 0 && Sv > 0) {Sv--; As++; }
                 break;
             case 4: // A + As -> A2 + Sv
-                if (A > 0 && As > 0) { A--; As--; A2++; Sv++; }
+                //if (A > 0 && As > 0) { A--; As--; A2++; Sv++; }
+                if (A > 0 && As > 0) { As--; A2++; Sv++; }
                 break;
             case 5: // Af + Sv -> Fv + As
                 if (Af > 0 && Sv > 0) { Af--; Sv--; Fv++; As++; }
